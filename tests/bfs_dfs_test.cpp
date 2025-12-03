@@ -5,3 +5,6 @@
 
 using namespace std;
 
+void bfs(Graph& g, int startVertex) {
+	
+}
