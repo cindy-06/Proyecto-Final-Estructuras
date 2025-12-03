@@ -37,5 +37,14 @@ void bfs(Graph &g, int startVertex)
 }
 
 void dfsUtil(int v, const vector<list<pair<int, int>>>&adj, vector<bool>& visited) {
-	
+	visited[v] = true;
+	cout << v << " ";
+
+	for(auto const& edge : adj[v]) {
+		int neighbor = edge.first;
+		if(!visited[neighbor]) {
+			dfsUtil(neighbor, adj, visited);
+		}
+	}
 }
+
