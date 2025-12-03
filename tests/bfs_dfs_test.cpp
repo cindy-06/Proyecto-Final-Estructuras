@@ -57,6 +57,7 @@ void dfs(Graph &g, int startVertex)
 	vector<bool> visited(v, false);
 
 	cout << "Recorrido DFS iniciando en " << startVertex << ": ";
+	const auto& adj = g.getAdjListRaw();
 	dfsUtil(startVertex, adj, visited);
 	cout << "\n";
 }
