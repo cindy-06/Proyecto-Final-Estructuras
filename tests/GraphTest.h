@@ -15,13 +15,13 @@ struct Edge
 
 class Graph
 {
-public:
+private:
 	int numVertices;
 	bool isDirected;
 	vector<list<pair<int, int>>> adjList;
 	vector<Edge> edges;
 
-private:
+public:
 	Graph(int vertices, bool directed = false)
 	{
 		numVertices = vertices;
