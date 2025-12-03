@@ -11,7 +11,18 @@ using namespace std;
 class Graph
 {
 public:
+	int numVertices;
+	bool isDirected;
+	vector<list<pair<int, int>>> adjList;
+	vector<Edge> edges;
+
 private:
+	Graph(int vertices, bool directed = false)
+	{
+		numVertices = vertices;
+		isDirected = directed;
+		adjList.resize(vertices);
+	}
 };
 
 #endif
