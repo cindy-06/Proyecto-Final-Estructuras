@@ -35,3 +35,7 @@ void bfs(Graph &g, int startVertex)
 	}
 	cout << "\n";
 }
+
+void dfsUtil(int v, const vector<list<pair<int, int>>>&adj, vector<bool>& visited) {
+	
+}
