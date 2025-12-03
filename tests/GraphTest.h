@@ -5,3 +5,13 @@
 #include <iostream>
 #include <list>
 #include <iomanip>
+
+using namespace std;
+
+class Graph
+{
+public:
+private:
+};
+
+#endif
