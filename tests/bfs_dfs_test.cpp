@@ -36,15 +36,27 @@ void bfs(Graph &g, int startVertex)
 	cout << "\n";
 }
 
-void dfsUtil(int v, const vector<list<pair<int, int>>>&adj, vector<bool>& visited) {
+void dfsUtil(int v, const vector<list<pair<int, int>>> &adj, vector<bool> &visited)
+{
 	visited[v] = true;
 	cout << v << " ";
 
-	for(auto const& edge : adj[v]) {
+	for (auto const &edge : adj[v])
+	{
 		int neighbor = edge.first;
-		if(!visited[neighbor]) {
+		if (!visited[neighbor])
+		{
 			dfsUtil(neighbor, adj, visited);
 		}
 	}
 }
 
+void dfs(Graph &g, int startVertex)
+{
+	int v = g.getNumVertices();
+	vector<bool> visited(v, false);
+
+	cout << "Recorrido DFS iniciando en " << startVertex << ": ";
+	dfsUtil(startVertex, adj, visited);
+	cout << "\n";
+}
