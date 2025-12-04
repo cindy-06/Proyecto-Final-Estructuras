@@ -18,7 +18,7 @@ class Graph
 private:
 	int numVertices;
 	bool isDirected;
-	vector<list<pair<int, int>>> adjList;
+	vector<list<pair<int, int> > > adjList;
 	vector<Edge> edges;
 
 public:
@@ -41,7 +41,7 @@ public:
 	}
 
 	int getNumVertices() const { return numVertices; }
-	const vector<list<pair<int, int>>> &getAdjListRaw() const { return adjList; }
+	const vector<list<pair<int, int> > > &getAdjListRaw() const { return adjList; }
 
 	void printAdjList()
 	{
@@ -57,7 +57,7 @@ public:
 		}
 	}
 
-	vector<vector<int>> getAdjMatrix()
+	vector<vector<int> > getAdjMatrix()
 	{
 		vector<vector<int>> matrix(numVertices, vector<int>(numVertices, 0));
 
@@ -73,7 +73,7 @@ public:
 		return matrix;
 	}
 
-	vector<vector<int>> getIncidenceMatrix()
+	vector<vector<int> > getIncidenceMatrix()
 	{
 		int numEdges = edges.size();
 		vector<vector<int>> matrix(numVertices, vector<int>(numEdges, 0));
