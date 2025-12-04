@@ -5,12 +5,22 @@
 #include <iostream>
 #include <list>
 #include <iomanip>
+#include <algorithm>
+#include "UnionFind.h"
 
 using namespace std;
 
 struct Edge
 {
 	int src, dest, weight;
+
+	bool operator<(const Edge &other) const{
+		return weight < other.weight;
+	}
+
+	bool operator>(const Edge &other) const{
+		return weight > other.weight;
+	}
 };
 
 class Graph
@@ -97,6 +107,47 @@ public:
 		}
 		return matrix;
 	}
+
+	vector<Edge> kruskalMST(){
+		vector<Edge> result;
+
+		vector<Edge> sortedEdges = edges;
+
+		sort(sortedEdges.begin(), sortedEdges.end(), [](const Edge &a, const Edge &b){
+			return a.weight < b.weight;
+		});
+
+		UnionFind uf = UnionFind(numVertices);
+		
+		for(auto &edge: sortedEdges){
+			int u = edge.src;
+			int v = edge.dest;
+
+			if(uf.find(u) != uf.find(v)) {
+				result.push_back(edge);
+				uf.unite(u, v);
+			}
+		}
+
+		return result;
+	}
+
+	void printMST(const vector<Edge> &mst) {
+    
+		cout << "\n--- Árbol de Expansión Mínima (Kruskal) ---\n";
+	
+		int totalWeight = 0;
+    
+		for (auto &edge : mst) {
+            cout << edge.src << " -- " << edge.dest
+                 << " (peso: " << edge.weight << ")\n";
+            totalWeight += edge.weight;
+        }
+    
+		cout << "Peso total del MST: " << totalWeight << endl;
+    }
+
+
 };
 class BipartiteGraph : public Graph {
 	private:
