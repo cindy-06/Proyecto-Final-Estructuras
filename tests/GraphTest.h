@@ -98,47 +98,45 @@ public:
 		return matrix;
 	}
 };
-
-class BipartiteGraph : Graph{
+class BipartiteGraph : public Graph {
 	private:
-		enum Color {red = 42, blu = 24, non = -1};
+		enum Color { red = 42, blu = 24, non = -1 };
 
 		vector<bool> visited;
 		vector<int> color;
 		vector<int> predecesor;
 
 	public:
-		BipartiteGraph(int vertices, bool directed) : Graph(vertices, directed) {
+		BipartiteGraph(int vertices, bool directed = false) : Graph(vertices, directed) {
 			visited = vector<bool>(vertices, false);
-			
-			color = vector<int> (vertices, non);
-			color[0] = red;
-
-			predecesor = vector<int> (vertices);
-			predecesor[0] = -1;
+			color = vector<int>(vertices, non);
+			predecesor = vector<int>(vertices, -1);
 		}
 
-		void color_graph(int v){
+		bool color_graph(int v) {
 			visited[v] = true;
-
-			if(predecesor[v] != -1){
-
-				color[v] = color[predecesor[v]] == red ? blu : red;
-				
-				cout << v << " con color: " << color[v];
-
-				for (auto const &edge : adjList[v])
-				{
-					int neighbor = edge.first;
-					if (!visited[neighbor])
-					{
-						color_graph(neighbor);
-					}
+			for (auto const &edge : adjList[v]) {
+				int neighbor = edge.first;
+				if (!visited[neighbor]) {
+					color[neighbor] = (color[v] == red ? blu : red);
+					predecesor[neighbor] = v;
+					if (!color_graph(neighbor)) return false;
+				} else if (color[neighbor] == color[v]) {
+					return false; // conflicto detectado
 				}
 			}
+			return true;
 		}
 
-		
+		bool isBipartite() {
+			for (int i = 0; i < numVertices; i++) {
+				if (!visited[i]) {
+					color[i] = red;
+					predecesor[i] = -1;
+					if (!color_graph(i)) return false;
+				}
+			}
+			return true;
+		}
 };
-
 #endif
