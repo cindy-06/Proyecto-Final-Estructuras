@@ -61,3 +61,7 @@ void dfs(Graph &g, int startVertex)
 	dfsUtil(startVertex, adj, visited);
 	cout << "\n";
 }
+
+/* Base para main (demostración de mis algoritmos) [para copiar y pegar en el archivo main]
+
+*/
