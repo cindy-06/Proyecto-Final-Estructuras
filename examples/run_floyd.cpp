@@ -5,17 +5,19 @@ using namespace std;
 
 int main()
 {
-    Graph g1(5, false); // no dirigido
+    Graph g2(6, true); // dirigido
 
-    g1.addEdge(0, 1, 2);
-    g1.addEdge(0, 2, 5);
-    g1.addEdge(1, 2, 3);
-    g1.addEdge(1, 3, 4);
-    g1.addEdge(2, 3, 1);
-    g1.addEdge(3, 4, 7);
+    g2.addEdge(0, 1, 3);
+    g2.addEdge(0, 2, 8);
+    g2.addEdge(1, 3, 2);
+    g2.addEdge(2, 4, 1);
+    g2.addEdge(3, 2, 4);
+    g2.addEdge(3, 5, 6);
+    g2.addEdge(4, 5, 2);
 
 
-    vector<vector<int>> matrix = g1.getAdjMatrix();
+
+    vector<vector<int>> matrix = g2.getAdjMatrix();
 
     floydWarshall(matrix);
 
