@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../include/GraphTest.h"
-#include "../src/dijkstra.cpp"
+#include "../include/dijkstra.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -9,21 +9,19 @@ using namespace std;
 
 int main() {
 
-    Graph g(6, false);
+    Graph g1(6, false); // no dirigido
 
-    // MISMAS aristas del ejemplo
-    g.addEdge(0, 1, 10);
-    g.addEdge(0, 5, 9);
-    g.addEdge(1, 2, 5);
-    g.addEdge(1, 3, 8);
-    g.addEdge(1, 4, 13);
-    g.addEdge(2, 3, 4);
-    g.addEdge(2, 5, 3);
-    g.addEdge(3, 4, 2);
-    g.addEdge(3, 5, 5);
-    g.addEdge(4, 5, 15);
+    g1.addEdge(0, 1, 4);
+    g1.addEdge(0, 2, 2);
+    g1.addEdge(1, 2, 1);
+    g1.addEdge(1, 3, 5);
+    g1.addEdge(2, 3, 8);
+    g1.addEdge(2, 4, 10);
+    g1.addEdge(3, 4, 2);
+    g1.addEdge(3, 5, 6);
+    g1.addEdge(4, 5, 3);
 
-    int N = g.getNumVertices();
+    int N = g1.getNumVertices();
 
     vector<int> dist(N, INF);
     vector<bool> visited(N, false);
@@ -32,7 +30,7 @@ int main() {
     dist[0] = 0;
     ruta[0] = "a";
 
-    auto adj = g.getAdjListRaw();
+    auto adj = g1.getAdjListRaw();
 
     // ----- CABECERA -----
     cout << "Desde\t";
