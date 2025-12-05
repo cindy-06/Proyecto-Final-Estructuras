@@ -9,19 +9,17 @@ using namespace std;
 
 int main() {
 
-    Graph g1(6, false); // no dirigido
+    Graph g2(5, true); // dirigido
 
-    g1.addEdge(0, 1, 4);
-    g1.addEdge(0, 2, 2);
-    g1.addEdge(1, 2, 1);
-    g1.addEdge(1, 3, 5);
-    g1.addEdge(2, 3, 8);
-    g1.addEdge(2, 4, 10);
-    g1.addEdge(3, 4, 2);
-    g1.addEdge(3, 5, 6);
-    g1.addEdge(4, 5, 3);
+    g2.addEdge(0, 1, 3);
+    g2.addEdge(0, 2, 6);
+    g2.addEdge(1, 2, 2);
+    g2.addEdge(1, 3, 4);
+    g2.addEdge(2, 3, 1);
+    g2.addEdge(3, 4, 5);
 
-    int N = g1.getNumVertices();
+
+    int N = g2.getNumVertices();
 
     vector<int> dist(N, INF);
     vector<bool> visited(N, false);
@@ -30,7 +28,7 @@ int main() {
     dist[0] = 0;
     ruta[0] = "a";
 
-    auto adj = g1.getAdjListRaw();
+    auto adj = g2.getAdjListRaw();
 
     // ----- CABECERA -----
     cout << "Desde\t";
