@@ -1,0 +1,75 @@
+
+void testIntegranteA() {
+    cout << "\n==============================================\n";
+    cout << "   PRUEBAS INTEGRANTE A: REPRESENTACIONES Y RECORRIDOS\n";
+    cout << "==============================================\n";
+
+    /*--- CASO 1: Grafo Conectado (Para probar Matrices y BFS) ---*/
+
+    // Estructura: 0-1, 0-4, 1-2, 1-3, 1-4, 2-3, 3-4
+    cout << "\n--- CASO 1: Grafo Conectado (5 nodos) ---\n";
+    Graph g1(5, false); // Grafo no dirigido
+
+    g1.addEdge(0, 1);
+    g1.addEdge(0, 4);
+    g1.addEdge(1, 2);
+    g1.addEdge(1, 3);
+    g1.addEdge(1, 4);
+    g1.addEdge(2, 3);
+    g1.addEdge(3, 4);
+
+    // 1. Muestra de las 3 representaciones
+    cout << "\n[1] Lista de Adyacencia:\n";
+    g1.printAdjList();
+
+    cout << "\n[2] Matriz de Adyacencia:\n";
+    vector<vector<int>> adjMat = g1.getAdjMatrix();
+    for (const auto& row : adjMat) {
+        cout << "[ ";
+        for (int val : row) cout << val << " ";
+        cout << "]\n";
+    }
+
+    cout << "\n[3] Matriz de Incidencia:\n";
+    vector<vector<int>> incMat = g1.getIncidenceMatrix();
+    for (const auto& row : incMat) {
+        cout << "[ ";
+        for (int val : row) cout << setw(2) << val << " "; // usamos setw() para alinear
+        cout << "]\n";
+    }
+
+    // 2. Prueba de BFS
+    cout << "\n[4] Recorrido BFS (Iniciando en 0):\n";
+    bfs(g1, 0);
+
+
+
+    
+    /*--- CASO 2: Grafo Desconectado (Requisito Pruebas) ---*/
+
+    // Estructura: 0-1-2 (Componente 1) ... 3-4 (Componente 2 aislada)
+    cout << "\n----------------------------------------------\n";
+    cout << "--- CASO 2: Grafo Desconectado (Prueba DFS) ---\n";
+    Graph g2(5, false);
+    
+    // Componente A
+    g2.addEdge(0, 1);
+    g2.addEdge(1, 2);
+    
+    // Componente B (Aislada)
+    g2.addEdge(3, 4);
+
+    cout << "Estructura: {0-1-2} y {3-4} aislados.\n";
+
+    // 3. Prueba de DFS
+    // Al iniciar en 0, solo debería visitar 0, 1 y 2. NO debería llegar al 3 o 4.
+    // Esto demuestra que el algoritmo respeta la conectividad.
+    cout << "\n[5] Recorrido DFS (Iniciando en 0):\n";
+    dfs(g2, 0);
+    
+    cout << "(Nota: Si no visita 3 y 4, es CORRECTO porque estan desconectados)\n";
+    
+    cout << "\n==============================================\n";
+    cout << "   FIN DE PRUEBAS INTEGRANTE A\n";
+    cout << "==============================================\n";
+}
